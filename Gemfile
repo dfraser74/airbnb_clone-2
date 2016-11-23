@@ -32,6 +32,9 @@ gem 'figaro'
 # Use FFaker to generate seeds
 gem 'ffaker'
 
+# Use Pagination
+gem 'will_paginate', '~> 3.1.0'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
