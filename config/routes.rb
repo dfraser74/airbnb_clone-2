@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'amenities/update'
+
   resources :listings
 
   # The priority is based upon order of creation: first created -> highest priority.

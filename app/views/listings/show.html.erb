@@ -8,6 +8,7 @@
 <p><b>Max Occupancy: </b><%= @listings.max_occupancy %></p>
 <p><b>Number of Rooms: </b><%= @listings.number_of_rooms %></p>
 <p><b>Description: </b><%= @listings.description %></p>
-
-
+<p><b>Available Amenities: </b></p>
+<p><%= available_amenities(@listings.id).html_safe %></p>
+<br>
 <a href="/listings"><button type="input">Back to Listings</button></a>
