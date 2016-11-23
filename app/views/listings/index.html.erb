@@ -1,21 +1,35 @@
 <h1>Listings#index</h1>
-<table class="listings">
+<table class="table table-bordered">
 	<thead>
-		<th>Listing Name</th>
-		<th>City</th>
-		<th>Price</th>
-		<th>Number of Rooms</th>
-		<th>Listed By:</th>
 	</thead>
 	<tbody>
 		<%= will_paginate @listings %>
 		<% @listings.all.each do |list| %>
+		<tr><td rowspan="5"><img src="http://www.hotel-r.net/im/hotel/gr/holiday-rooms.jpg" width="100%" height="100%"> </td>
+		<td class="col-md-3" colspan="3"><a href="/listings/<%= list.id %>"><h4><%= list.name %></h4></a>
+		<%= list.description %></td>
 		<tr>
-		<td><a href="/listings/<%= list.id %>"><%= list.name %></a></td>
-		<td><%= list.city %></td>
-		<td>RM <%= list.price %></td>
-		<td><%= list.number_of_rooms %></td>
-		<td><%= list.user.email %></td>
+		<td class="col-md-2"><b>Price:</b> RM <%= list.price %></td>
+		<td class="col-md-2"><b>No. of Rooms:</b> <%= list.number_of_rooms %> <span class="glyphicon glyphicon-bed"></span></td>
+		<td class="col-md-2"><b>Max Occupancy:</b> <%= list.max_occupancy %> <span class="glyphicon glyphicon-user"></span></td>
+		</tr>
+		<tr>
+		<td class="col-md-2"><b>City:</b> <%= list.city %></td>
+		<td class="col-md-2" colspan="2"><b>Address:</b> <%= list.address %></td>
+		</tr>
+		<tr>
+		<td class="col-md-3" colspan="3"><b>Amenities: <%= amenities_icon(list.id).html_safe %></b></td>
+		</tr>
+		<tr>
+		<td class="col-md-3" colspan="3"><b>Listed By:</b> <%= list.user.email %>
+		<% if allowed?(current_user.id, list.user_id) %>
+		&nbsp;<%= edit_authorization(current_user.id, list.id).html_safe %>&nbsp;<%= delete_authorization(current_user.id, list.id).html_safe %>
+		<% else %>
+		<% end %>
+		</td>
+		</tr>
+		<tr>
+		<td colspan="4"></td>
 		</tr>
 		<% end %>
 	</tbody>

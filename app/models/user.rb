@@ -20,4 +20,6 @@ class User < ActiveRecord::Base
   def password_optional?
     true
   end
+
+  enum role: [:tenant, :landlord, :admin]
 end
