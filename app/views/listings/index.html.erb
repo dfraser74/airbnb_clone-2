@@ -8,7 +8,8 @@
 		<th>Listed By:</th>
 	</thead>
 	<tbody>
-		<% Listing.all.each do |list| %>
+		<%= will_paginate @listings %>
+		<% @listings.all.each do |list| %>
 		<tr>
 		<td><%= list.name %></td>
 		<td><%= list.city %></td>
