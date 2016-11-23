@@ -6,17 +6,19 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-100.times do
-Listing.create(
-	user_id: 1,
-	name: FFaker::AddressAU.neighborhood,
-	city: FFaker::AddressAU.city,
-	address: FFaker::AddressAU.full_address,
-	price: rand(10_000..100_000) * 0.01,
-	max_occupancy: rand(1..6),
-	number_of_rooms: rand(1..3),
-	description: FFaker::Tweet.body,
-	availability: true
+Listing.all.each do |list|
+
+Amenity.create(
+	listing_id: list.id,
+	wifi: [true, false].sample,
+	pool: [true, false].sample,
+	gym: [true, false].sample,
+	breakfast: [true, false].sample,
+	spa: [true, false].sample,
+	aircond: [true, false].sample,
+	parking: [true, false].sample,
+	kitchen: [true, false].sample,
+	tv: [true, false].sample
 	)
 end
 
