@@ -23,8 +23,10 @@ gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
 
-# Use Clearance for user authentication
+# Use Clearance & Omniauth for user authentication
 gem 'clearance'
+gem 'omniauth'
+gem 'omniauth-facebook'
 
 # Use Figaro for privacy protection
 gem 'figaro'
