@@ -1,2 +1,13 @@
 <h1>Listings#show</h1>
-<p>Find me in app/views/listings/show.html.erb</p>
+<h3><%= @listings.name %></h3>
+<p><b>Listed by: </b><%= @listings.user.email %></p>
+<p><b>City: </b><%= @listings.city %></p>
+<p><b>Address: </b><%= @listings.address %></p>
+<p><b>Price: </b>RM <%= @listings.price %></p>
+<p><b>Availability: </b><%= availability_checker(@listings.id) %></p>
+<p><b>Max Occupancy: </b><%= @listings.max_occupancy %></p>
+<p><b>Number of Rooms: </b><%= @listings.number_of_rooms %></p>
+<p><b>Description: </b><%= @listings.description %></p>
+
+
+<a href="/listings"><button type="input">Back to Listings</button></a>
