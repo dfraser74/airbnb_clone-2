@@ -27,7 +27,10 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'clearance'
 
 # Use Figaro for privacy protection
-gem "figaro"
+gem 'figaro'
+
+# Use FFaker to generate seeds
+gem 'ffaker'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
