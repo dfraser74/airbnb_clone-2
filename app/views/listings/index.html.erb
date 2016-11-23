@@ -1,2 +1,22 @@
 <h1>Listings#index</h1>
-<p>Find me in app/views/listings/index.html.erb</p>
+<table class="listings">
+	<thead>
+		<th>Listing Name</th>
+		<th>City</th>
+		<th>Price</th>
+		<th>Number of Rooms</th>
+		<th>Listed By:</th>
+	</thead>
+	<tbody>
+		<% Listing.all.each do |list| %>
+		<tr>
+		<td><%= list.name %></td>
+		<td><%= list.city %></td>
+		<td><%= list.price %></td>
+		<td><%= list.number_of_rooms %></td>
+		<td><%= list.user.email %></td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>
+
