@@ -22,20 +22,26 @@
 # 	)
 # end
 
-User.create(
-	email: "tenant@abc.com",
-	password: "1234Qwer",
-	first_name: "Tenant",
-	role: 0)
+# User.create(
+# 	email: "tenant@abc.com",
+# 	password: "1234Qwer",
+# 	first_name: "Tenant",
+# 	role: 0)
 
-User.create(
-	email: "landlord@abc.com",
-	password: "1234Qwer",
-	first_name: "Landlord",
-	role: 1)
+# User.create(
+# 	email: "landlord@abc.com",
+# 	password: "1234Qwer",
+# 	first_name: "Landlord",
+# 	role: 1)
 
-User.create(
-	email: "admin@abc.com",
-	password: "1234Qwer",
-	first_name: "Admin",
-	role: 2)
+# User.create(
+# 	email: "admin@abc.com",
+# 	password: "1234Qwer",
+# 	first_name: "Admin",
+# 	role: 2)
+file = "~/Desktop/git_clones/airbnb_clone/app/assets/images/noimagefound.jpg"
+data_file = File.open(File.expand_path(file))
+Listing.all.each do |list|
+	list.avatars = data_file
+	list.save
+end
