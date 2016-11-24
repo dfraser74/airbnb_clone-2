@@ -1,5 +1,10 @@
 module ListingsHelper
 
+	def setup_listing(listings)
+    	listings.amenities ||= Amenity.new
+    	listings
+  	end
+
 	def availability_checker(listing_id)
 
 		if Listing.find(listing_id).availability == true
