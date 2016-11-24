@@ -1,3 +1,3 @@
 class Amenity < ActiveRecord::Base
-  belongs_to :listing, dependent: :destroy
+  belongs_to :listing
 end

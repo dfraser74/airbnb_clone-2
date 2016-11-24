@@ -14,8 +14,8 @@ module ListingsHelper
 		case User.find(user_id).role
 		when "landlord"
 			return "<a href=\"/listings/#{listing_id}/edit\"><button type=\"input\">Edit</button></a>"
-		when "admin", "tenant"
-			return "You cannot edit this listing."
+		else
+			return ""
 		end
 	end	
 
@@ -23,14 +23,13 @@ module ListingsHelper
 
 		case User.find(user_id).role
 		when "landlord", "admin"
-			return link_to "Delete", "/listings/#{listing_id}", :method => :delete
-			# return(
-			# 	link_to Listing.find(listing_id), method: :delete do
-			# 		"<button>Delete</button>".html_safe 
-			# 	end
-			# )
-		when "tenant"
-			return "You cannot edit this listing."
+			return(
+				link_to listing_path(listing_id), method: :delete do
+					"<button>Delete</button>".html_safe 
+				end
+			)
+		else
+			return ""
 		end
 	end				
 end

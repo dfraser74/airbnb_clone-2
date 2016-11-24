@@ -26,8 +26,8 @@ class ListingsController < ApplicationController
   end
 
   def destroy
-    byebug
-    redirect_to listings_path, notice: "deleted!"
+    Listing.find(params[:id]).destroy
+    redirect_to listings_path, notice: "Deleted!"
   end
 
   private
