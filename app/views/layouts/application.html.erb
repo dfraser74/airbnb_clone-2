@@ -21,11 +21,15 @@
 	PAIRBNB
 		<div class="welcome">
 			<% if signed_in? %>
-				Welcome
-				<%= current_user.email %>!
+				&nbsp;&nbsp;
+				<b>Welcome,</b>
+				<%= current_user.email %>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				</div>
 				<span class="profile_pic"><%= image_tag(current_user.avatar.thumb, :class => "profile_pic") %></span>
+			<% else %>
+			</div>
 			<% end %>
-		</div>
 	</div>
 
 	<div class="navbar">
@@ -38,7 +42,6 @@
 			<%= link_to "Sign up", sign_up_path, class: "btn btn-primary navbtn col col-md-3" %>		
 			<%= link_to "Sign in", sign_in_path, class: "btn btn-primary navbtn col col-md-3" %>	
 		<% end %>
-	
 	</div>
 	<%= yield %>
 

@@ -23,7 +23,7 @@
 	background-color: #eeeeee;
 	padding-bottom: 20px;
 	margin-left: 1px;
-	padding-right: 3px;
+	margin-right: 1px;
 	background-image: url(https://free4kwallpapers.com/uploads/originals/2016/02/16/a-pretty-nice-neon--wallpaper.jpg);
 	background-position: 0px -400px;
 	background-size: 100%;
@@ -32,20 +32,16 @@
 
 .welcome {
 	background: #ffffff;
-	border-radius: 20px 20px 0px 0px;
+	border-radius: 20px 0px 0px 0px;
 	font-size: 12px;
 	color: #347eaf;
 	font-weight: lighter;
 	-webkit-text-stroke: 0px;
 	float: right;
 	position: absolute;
-	top: 132px;
+	top: 164px;
 	padding: 5px 5px 5px 5px;
 	right: 0px;
-}
-
-.profile_pic {
-	vertical-align:bottom;
 }
 
 .navbtn {
@@ -77,4 +73,10 @@
 	border-radius: 50%;
 	width: 50px;
 	height: 50px;
+	vertical-align: bottom;
+	position: absolute;	
+	top: 70px;
+	right: 0px;
+	float: right;
+}
 }
