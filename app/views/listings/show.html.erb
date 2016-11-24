@@ -1,5 +1,6 @@
 <h1>Listings#show</h1>
 <h3><%= @listings.name %></h3>
+<%= image_gallery(@listings.id).html_safe %>
 <p><b>Listed by: </b><%= @listings.user.email %></p>
 <p><b>City: </b><%= @listings.city %></p>
 <p><b>Address: </b><%= @listings.address %></p>

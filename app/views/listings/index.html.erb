@@ -6,7 +6,9 @@
 	<tbody>
 		<%= will_paginate @listings %>
 		<% @listings.all.each do |list| %>
-		<tr><td rowspan="5"><img src="http://www.hotel-r.net/im/hotel/gr/holiday-rooms.jpg" width="100%" height="100%"> </td>
+		<tr><td rowspan="5">
+		<%= main_image(list.id) %>
+		</td>
 		<td class="col-md-3" colspan="3"><a href="/listings/<%= list.id %>"><h4><%= list.name %></h4></a>
 		<%= list.description %></td>
 		<tr>

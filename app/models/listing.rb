@@ -4,4 +4,6 @@ class Listing < ActiveRecord::Base
 
  accepts_nested_attributes_for :amenities,
  :allow_destroy => true
+
+  mount_uploaders :avatars, AvatarUploader
 end
