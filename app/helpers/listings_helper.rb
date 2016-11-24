@@ -43,7 +43,7 @@ module ListingsHelper
 		i = 0
 		code = []
 		while i < @listings.avatars.length
-			code << image_tag(@listings.avatars[i].url)
+			code << image_tag(@listings.avatars[i].thumb.url)
 			i += 1
 		end
 		return code.join(" ")
@@ -53,7 +53,7 @@ module ListingsHelper
 		@listings = Listing.find(listing_id)
 
 		if @listings.avatars.length > 0
-			image_tag(@listings.avatars[0].url)
+			image_tag(@listings.avatars[0].medium.url)
 		else
 			image_tag('http://www.novelupdates.com/img/noimagefound.jpg')
 		end

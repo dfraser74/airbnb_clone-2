@@ -23,9 +23,12 @@ gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
 
-# Use MiniMagick for image uploading
+# Use MiniMagick & Carrierwave for image uploading
 gem 'mini_magick'
 gem 'carrierwave', '>= 1.0.0.rc', '< 2.0', github: 'carrierwaveuploader/carrierwave'
+
+# Server Storage using Fog
+gem 'fog'
 
 # Use Clearance & Omniauth for user authentication
 gem 'clearance'
