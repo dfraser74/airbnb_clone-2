@@ -16,21 +16,32 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-<%= notice if notice %>
-	<% if signed_in? %>
-		Welcome <%= current_user.email %>!
-		<%= image_tag(current_user.avatar.thumb) %>
-		<%= button_to "Sign out", sign_out_path, method: :delete %>
-		<%= button_to "Edit profile", edit_user_path(current_user.id), method: :get %>
-	<% else %>
-		<%= link_to "Sign in", sign_in_path %>
-	<% end %>
-	<br>
-	<%= button_to "Listings", listings_path, method: :get %>
-	<br>
-	<%= button_to "Home", root_url, method: :get %>
+<div class="container">
+	<div class="col col-md-12 header">
+	PAIRBNB
+		<div class="welcome">
+			<% if signed_in? %>
+				Welcome
+				<%= current_user.email %>!
+				<span class="profile_pic"><%= image_tag(current_user.avatar.thumb, :class => "profile_pic") %></span>
+			<% end %>
+		</div>
+	</div>
 
+	<div class="navbar">
+		<%= button_to "Home", root_url, method: :get, class: "btn btn-primary navbtn col col-md-3" %>
+		<%= button_to "Listings", listings_path, method: :get, class: "btn btn-primary navbtn col col-md-3" %>
+		<% if signed_in? %>
+			<%= button_to "Edit profile", edit_user_path(current_user.id), method: :get, class: "btn btn-primary navbtn col col-md-3" %>
+			<%= button_to "Sign out", sign_out_path, method: :delete, class: "btn btn-primary navbtn col col-md-3" %>
+		<% else %>
+			<%= link_to "Sign up", sign_up_path, class: "btn btn-primary navbtn col col-md-3" %>		
+			<%= link_to "Sign in", sign_in_path, class: "btn btn-primary navbtn col col-md-3" %>	
+		<% end %>
+	
+	</div>
 	<%= yield %>
 
+</div>
 </body>
 </html>

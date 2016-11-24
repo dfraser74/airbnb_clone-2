@@ -25,8 +25,11 @@
 		</tr>
 		<tr>
 		<td class="col-md-3" colspan="3"><b>Listed By:</b> <%= list.user.email %>
+		<% if signed_in? %>
 		<% if allowed?(current_user.id, list.user_id) %>
 		&nbsp;<%= edit_authorization(current_user.id, list.id).html_safe %>&nbsp;<%= delete_authorization(current_user.id, list.id).html_safe %>
+		<% else %>
+		<% end %>
 		<% else %>
 		<% end %>
 		</td>
