@@ -3,6 +3,8 @@ class User < ActiveRecord::Base
   has_many :listings
   has_many :authentications, :dependent => :destroy
 
+  mount_uploader :avatar, AvatarUploader
+
   def self.create_with_auth_and_hash(authentication,auth_hash)
     create! do |u|
       u.password = Time.now.to_i.to_s(36)
