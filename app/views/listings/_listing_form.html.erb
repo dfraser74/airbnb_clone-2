@@ -1,0 +1,36 @@
+<% unless @listings != nil %>
+<% @listings = Listing.new %>
+<% end %>
+
+<%= form_for(setup_listing(@listings)) do |f| %>
+<%= f.label :name %>:<br>
+<%= f.text_field :name %><br><br>
+<%= f.label :city %>:<br>
+<%= f.text_field :city %><br><br>
+<%= f.label :address %>:<br>
+<%= f.text_field :address %><br><br>
+<%= f.label :price %>:<br>
+<%= f.number_field :price, in: 1.00..10_000.00, step: 0.1 %><br><br>
+<%= f.label :availability %>:<br>
+<%= f.radio_button :availability, true %>Yes<br>
+<%= f.radio_button :availability, false %>No<br><br>
+<%= f.label :max_occupancy %>:<br>
+<%= f.number_field :max_occupancy, in: 1..20, step: 1 %><br><br>
+<%= f.label :number_of_rooms %>:<br>
+<%= f.number_field :number_of_rooms, in: 1..20, step: 1 %><br><br>
+<%= f.label :description %>:<br>
+<%= f.text_area :description, size: "24x6" %><br><br>
+	<%= f.fields_for :amenities do |ff| %>
+	Wifi: <%= ff.check_box :wifi %>
+	Pool: <%= ff.check_box :pool %>
+	Gym: <%= ff.check_box :gym %>
+	Breakfast: <%= ff.check_box :breakfast %>
+	Spa: <%= ff.check_box :spa %>
+	Aircond: <%= ff.check_box :aircond %>
+	Parking: <%= ff.check_box :parking %>
+	Kitchen: <%= ff.check_box :kitchen %>
+	TV: <%= ff.check_box :tv %>
+	<% end %>
+
+<%= f.submit %>
+<% end %>

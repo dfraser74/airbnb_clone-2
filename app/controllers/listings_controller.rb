@@ -1,6 +1,6 @@
 class ListingsController < ApplicationController
   def index
-    @listings = Listing.page(params[:page]).per_page(20).order('price DESC')
+    @listings = Listing.page(params[:page]).per_page(20).order('created_at DESC')
   end
 
   def show
@@ -12,6 +12,11 @@ class ListingsController < ApplicationController
   end
 
   def create
+    params.permit!
+    new_listing = Listing.create(params[:listing])
+    new_listing.user_id = current_user.id
+    new_listing.save
+    redirect_to("/listings")
   end
 
   def edit
@@ -21,7 +26,6 @@ class ListingsController < ApplicationController
   def update
     params.permit!
     Listing.update(params[:id], params[:listing])
-    @listings = Listing.page(params[:page]).per_page(20).order('price DESC')
     redirect_to("/listings")
   end
 
@@ -30,9 +34,4 @@ class ListingsController < ApplicationController
     redirect_to listings_path, notice: "Deleted!"
   end
 
-  private
-
-  def listing_params
-    params.require(:listing).permit(:name, :city, :address)
-  end
 end
