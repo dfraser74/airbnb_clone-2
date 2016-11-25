@@ -7,6 +7,8 @@ class ReservationsController < ApplicationController
 	def create
 	    params.permit!
 	    @reservation = Reservation.new(params[:reservation])
+	    @reservation.check_in_date = Date.strptime(params[:reservation][:check_in_date], '%m/%d/%Y')
+	    @reservation.check_out_date = Date.strptime(params[:reservation][:check_out_date], '%m/%d/%Y')
 	    if @reservation.save
 	      redirect_to("/reservations/#{@reservation.id}")
 	  	else

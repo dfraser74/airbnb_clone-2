@@ -3,11 +3,22 @@ class Reservation < ActiveRecord::Base
   belongs_to :listing
   validates :check_in_date, presence: true
   validates :check_out_date, presence: true
+  before_validation :valid_date_order 
   before_validation :unique_check_in_and_out_dates
   before_validation :date_availability
 
-  def unique_check_in_and_out_dates
+  def valid_date_order
+    if check_in_date != nil
+      if check_in_date > check_out_date
+        self.check_in_date = nil
+        self.check_out_date = nil
+        $notice = "Check in date cannot be later than check out date"
+      end
+    end
+  end   
 
+  def unique_check_in_and_out_dates
+    if check_in_date != nil
   	if check_in_date == check_out_date
   		self.check_in_date = nil
   		self.check_out_date = nil
@@ -15,7 +26,8 @@ class Reservation < ActiveRecord::Base
   	else
   	end
   end
-
+  end
+ 
   def date_availability
     user_record = Reservation.where(user_id: user_id)
     listing_record = Reservation.where(listing_id: listing_id)
