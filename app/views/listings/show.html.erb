@@ -13,4 +13,5 @@
 <p><%= available_amenities(@listings.id).html_safe %></p>
 <br>
 <p><%= edit_authorization(current_user.id, @listings.id).html_safe %></p>
+<%= link_to "Reserve Now", new_reservation_path(listing: @listings.id), method: :get %>
 <a href="/listings"><button type="input">Back to Listings</button></a>

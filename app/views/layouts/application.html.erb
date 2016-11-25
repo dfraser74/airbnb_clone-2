@@ -23,7 +23,7 @@
 			<% if signed_in? %>
 				&nbsp;&nbsp;
 				<b>Welcome,</b>
-				<%= current_user.email %>
+				<%= link_to current_user.email, user_path(current_user), method: :get %>
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				</div>
 				<span class="profile_pic"><%= image_tag(current_user.avatar.thumb, :class => "profile_pic") %></span>
@@ -43,6 +43,8 @@
 			<%= link_to "Sign in", sign_in_path, class: "btn btn-primary navbtn col col-md-3" %>	
 		<% end %>
 	</div>
+	<%= flash[:notice] if flash[:notice] %>
+	<% flash[:notice] = nil %>
 	<%= yield %>
 
 </div>

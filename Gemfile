@@ -35,6 +35,13 @@ gem 'clearance'
 gem 'omniauth'
 gem 'omniauth-facebook'
 
+# Use Daterangepicker
+gem 'bootstrap-datepicker-rails'
+gem 'bootstrap', '~> 4.0.0.alpha5'
+gem 'jquery-rails'
+gem 'momentjs-rails'
+gem 'bootstrap-daterangepicker-rails'
+
 # Use Figaro for privacy protection
 gem 'figaro'
 
