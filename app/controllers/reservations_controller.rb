@@ -6,9 +6,16 @@ class ReservationsController < ApplicationController
 
 	def create
 	    params.permit!
-	    reservation = Reservation.create(params[:reservation])
-	    reservation.user_id = current_user.id
-	    reservation.save
-	    redirect_to("/listings/#{reservation.listing_id}")
+	    @reservation = Reservation.new(params[:reservation])
+	    if @reservation.save
+	      redirect_to("/reservations/#{@reservation.id}")
+	  	else
+	  	  flash[:notice] = $notice
+	  	  redirect_to(:back)
+	  	end
+  	end
+
+  	def show
+  		@reservation = Reservation.find(params[:id])
   	end
 end
