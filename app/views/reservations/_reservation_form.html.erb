@@ -1,0 +1,13 @@
+<% @reservation = Reservation.new %>
+<%= form_for(@reservation) do |r| %>
+<%= r.hidden_field :listing_id, :value => @listings.id %>
+<%= r.hidden_field :total_cost, :value => @listings.price * 1.6 %>
+<%= r.label :check_in_date %>:<br>
+<%= r.date_select(:check_in_date, :order => [:day, :month, :year]) %><br><br>
+<%= r.label :check_out_date %>:<br>
+<%= r.date_select(:check_out_date, :order => [:day, :month, :year]) %><br><br>
+<%= r.label :special_request %>:<br>
+<%= r.text_field :special_request %><br><br>
+
+<%= r.submit %>
+<% end %>
