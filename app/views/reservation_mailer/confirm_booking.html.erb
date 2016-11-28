@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Welcome to pairbnb.com, <%= @user.first_name %></h1>
+    <p>
+      You have successfully booked <%= @listing.name %> at pairbnb.com,
+      your login email is: <%= @user.email %>.<br>
+    </p>
+    <p>
+      Details of your booking:<br>
+      - Listing: <%= @listing.name %><br>
+      - Check-in Date: <%= @reservation.check_in_date %><br>
+      - Check-out Date: <%= @reservation.check_out_date %><br>
+    </p>
+    <p>
+      To view your reservation, please login and follow this link: <a href="http://localhost:3000/reservations/<%= @reservation.id %>"> Click Here </a>.
+    </p>
+    <p>Thanks for booking and have a great day!</p>
+    <p><%= link_to 'Pairbnb Home', root_url %>
+  </body>
+</html>
