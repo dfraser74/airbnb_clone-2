@@ -10,7 +10,7 @@ class ReservationsController < ApplicationController
 	    @reservation.check_in_date = Date.strptime(params[:reservation][:check_in_date], '%m/%d/%Y')
 	    @reservation.check_out_date = Date.strptime(params[:reservation][:check_out_date], '%m/%d/%Y')
 	    if @reservation.save
-	      ReservationMailer.confirm_booking(@reservation.user, @reservation.listing, @reservation).deliver_later
+	      ReservationJob.perform_later(@reservation.user, @reservation.listing, @reservation)
 	      redirect_to("/reservations/#{@reservation.id}")
 	  	else
 	  	  flash[:notice] = $notice
