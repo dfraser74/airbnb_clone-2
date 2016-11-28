@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 
+  listing_id: 
+  check_in_date: 2016-11-25
+  check_out_date: 2016-11-25
+  total_cost: 9.99
+  special_request: MyString
+
+two:
+  user_id: 
+  listing_id: 
+  check_in_date: 2016-11-25
+  check_out_date: 2016-11-25
+  total_cost: 9.99
+  special_request: MyString

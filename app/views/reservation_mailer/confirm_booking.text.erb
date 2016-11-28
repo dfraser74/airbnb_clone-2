@@ -1,0 +1,14 @@
+Welcome to pairbnb.com, <%= @user.first_name %>
+===============================================
+ 
+You have successfully booked <%= @listing.name %> at pairbnb.com,
+your email login is: <%= @user.email %>.
+
+Details of your booking:
+- Listing: <%= @listing.name %>
+- Check-in Date: <%= @reservation.check_in_date %>
+- Check-out Date: <%= @reservation.check_out_date %>
+ 
+To view your reservation, please login and follow this link: http://localhost:3000/reservations/<%= @reservation.id %>.
+ 
+Thanks for booking and have a great day!

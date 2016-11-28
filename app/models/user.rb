@@ -1,7 +1,8 @@
 class User < ActiveRecord::Base
   include Clearance::User
-  has_many :listings
-  has_many :authentications, :dependent => :destroy
+  has_many :reservations, dependent: :destroy
+  has_many :listings, dependent: :destroy
+  has_many :authentications, dependent: :destroy
 
   mount_uploader :avatar, AvatarUploader
 

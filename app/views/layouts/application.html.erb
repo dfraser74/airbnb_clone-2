@@ -4,6 +4,8 @@
 	<title>Pairbnb</title>
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+	<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
@@ -12,6 +14,7 @@
 
 	<!-- Latest compiled and minified JavaScript -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 	<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
 	<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
 	<%= csrf_meta_tags %>
@@ -25,7 +28,7 @@
 			<% if signed_in? %>
 				&nbsp;&nbsp;
 				<b>Welcome,</b>
-				<%= current_user.email %>
+				<%= link_to current_user.email, user_path(current_user), method: :get %>
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				</div>
 				<span class="profile_pic"><%= image_tag(current_user.avatar.thumb, :class => "profile_pic") %></span>
@@ -45,6 +48,8 @@
 			<%= link_to "Sign in", sign_in_path, class: "btn btn-primary navbtn col col-md-3" %>	
 		<% end %>
 	</div>
+	<%= flash[:notice] if flash[:notice] %>
+	<% flash[:notice] = nil %>
 	<%= yield %>
 
 </div>

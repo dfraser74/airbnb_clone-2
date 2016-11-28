@@ -14,6 +14,9 @@ gem 'coffee-rails', '~> 4.1.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
+# Use background job processing
+gem 'sidekiq'
+
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
@@ -34,6 +37,13 @@ gem 'fog'
 gem 'clearance'
 gem 'omniauth'
 gem 'omniauth-facebook'
+
+# Use Daterangepicker
+gem 'bootstrap-datepicker-rails'
+gem 'bootstrap', '~> 4.0.0.alpha5'
+gem 'jquery-rails'
+gem 'momentjs-rails'
+gem 'bootstrap-daterangepicker-rails'
 
 # Use Figaro for privacy protection
 gem 'figaro'

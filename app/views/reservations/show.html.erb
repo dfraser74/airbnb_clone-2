@@ -1,0 +1,14 @@
+<b>Listing Name:</b><br>
+<%= @reservation.listing.name %><br><br>
+<b>Reservation Made By:</b><br>
+<%= @reservation.user.email %><br><br>
+<b>Reservation Price:</b><br>
+<%= @reservation.listing.price %><br><br>
+<b>Total Cost (After 6% GST):</b><br>
+<%= @reservation.total_cost %><br><br>
+<b>Travel Date:</b><br>
+<%= @reservation.check_in_date %> to <%= @reservation.check_out_date %><br><br>
+<b>Special Request:</b><br>
+<%= @reservation.special_request %><br><br>
+<b>Reservation Made On:</b><br>
+<%= @reservation.created_at %><br>
