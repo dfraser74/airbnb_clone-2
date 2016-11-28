@@ -14,8 +14,15 @@
 //= require jquery_ujs
 //= require bootstrap-datepicker
 //= require turbolinks
-//= require_tree 
+//= require_tree .
+
+$(document).ready(function(){
+    $('.carousel').carousel({
+      interval: 3000
+    })
+  });    
 
 $(function() {
     $('.datepicker').datepicker({dateFormat: 'dd-mm-yy'});
 });
+
