@@ -36,7 +36,7 @@ class Reservation < ActiveRecord::Base
         if (x.check_in_date..x.check_out_date).include?(check_in_date) || (x.check_in_date..x.check_out_date).include?(check_out_date) || (check_in_date..check_out_date).include?(x.check_in_date) || (check_in_date..check_out_date).include?(x.check_out_date)
           self.check_in_date = nil
           self.check_out_date = nil
-          $notice = "You've already have a reservation at those dates!"
+          $notice = "You've already have a reservation on those dates!"
           break
         else
         end

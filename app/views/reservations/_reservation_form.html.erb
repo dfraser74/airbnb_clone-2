@@ -4,9 +4,9 @@
 <%= r.hidden_field :user_id, :value => current_user.id %>
 <%= r.hidden_field :total_cost, :value => @listings.price * 1.6 %>
 <%= r.label :check_in_date %>:<br>
-<%= r.date_field :check_in_date, 'data-provide' => 'datepicker' %><br><br>
+<%= r.text_field :check_in_date, :class => 'datepicker', 'data-provide' => 'datepicker' %><br><br>
 <%= r.label :check_out_date %>:<br>
-<%= r.date_field :check_out_date, 'data-provide' => 'datepicker' %><br><br>
+<%= r.text_field :check_out_date, :class => 'datepicker', 'data-provide' => 'datepicker' %><br><br>
 <%= r.label :special_request %>:<br>
 <%= r.text_field :special_request %><br><br>
 
