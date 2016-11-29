@@ -8,27 +8,43 @@ class ReservationsController < ApplicationController
 	    params.permit!
 
 	    @reservation = Reservation.new(params[:reservation])
-		#byebug
 		@reservation.check_in_date = Date.strptime(params[:reservation][:check_in_date], '%m/%d/%Y')
 		@reservation.check_out_date = Date.strptime(params[:reservation][:check_out_date], '%m/%d/%Y')
 		@reservation.booked_date = Date.strptime(params[:reservation][:check_in_date], '%m/%d/%Y')
 		@reservation.save
 
 	    if @reservation.save
+
+	      continue_check = true
 	      #ReservationJob.perform_later(@reservation.user, @reservation.listing, @reservation)
 	      (@reservation.check_in_date..@reservation.check_out_date).each do |date|
-	      	#byebug
-	      	if date != @reservation.check_in_date
+	      	if date != @reservation.check_in_date && continue_check == true
 	      		@new_reservation = Reservation.new(params[:reservation])
 	      		@new_reservation.booked_date = date
 				@new_reservation.check_in_date = Date.strptime(params[:reservation][:check_in_date], '%m/%d/%Y')
 				@new_reservation.check_out_date = Date.strptime(params[:reservation][:check_out_date], '%m/%d/%Y')
-				@new_reservation.save	 
+				#byebug
+				if @new_reservation.save
+				else
+				   remove = Reservation.where(check_in_date: @reservation.check_in_date, user_id: @reservation.user_id)
+				   remove.each do |x|
+				   	x.destroy
+				   end
+	  	  		   continue_check = false
+				   break
+				end 
 			end
 		   end
 
-		  ReservationMailer.confirm_booking(@reservation.user, @reservation.listing, @reservation).deliver_now
-	      redirect_to("/reservations/#{@reservation.id}")     		
+		   if continue_check == true
+		  	ReservationMailer.confirm_booking(@reservation.user, @reservation.listing, @reservation).deliver_now
+	      	redirect_to("/reservations/#{@reservation.id}") 
+
+	      	else
+	      	flash[:notice] = $notice
+	  	  	redirect_to(:back)
+
+	       end		
 
 	  	else
 	  	  flash[:notice] = $notice
