@@ -42,9 +42,12 @@ class PaymentsController < ApplicationController
         total_cost: params[:total_cost])
 
       new_payment.save
-      reservation = Reservation.find(params[:reservation_id])
-      reservation.payment_id = new_payment.id
-      reservation.save
+      main_reservation = Reservation.find(params[:reservation_id])
+      reservation = Reservation.where(check_in_date: main_reservation.check_in_date, user_id: main_reservation.user_id)
+      reservation.each do |ind_record|
+        ind_record.payment_id = new_payment.id
+        ind_record.save
+      end
 
     elsif result.transaction
       flash[:notice] = "Error processing transaction:"
