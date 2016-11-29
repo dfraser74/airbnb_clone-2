@@ -1,11 +1,12 @@
 class Reservation < ActiveRecord::Base
   belongs_to :user
+  belongs_to :payment
   belongs_to :listing
   validates :check_in_date, presence: true
   validates :check_out_date, presence: true
-  before_validation :valid_date_order 
-  before_validation :unique_check_in_and_out_dates
-  before_validation :date_availability
+  before_validation :valid_date_order, on: :create
+  before_validation :unique_check_in_and_out_dates, on: :create
+  before_validation :date_availability, on: :create
 
   def valid_date_order
     if check_in_date != nil
