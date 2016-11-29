@@ -42,7 +42,6 @@ class PaymentsController < ApplicationController
         total_cost: params[:total_cost])
 
       new_payment.save
-      byebug
       reservation = Reservation.find(params[:reservation_id])
       reservation.payment_id = new_payment.id
       reservation.save
