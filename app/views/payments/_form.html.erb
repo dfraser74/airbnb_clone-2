@@ -1,0 +1,20 @@
+<form id="checkout-form" action="/payments" method="post">
+  <div id="error-message"></div>
+
+  <label for="card-number">Card Number</label>
+  <div class="hosted-field" id="card-number"></div>
+
+  <label for="cvv">CVV</label>
+  <div class="hosted-field" id="cvv"></div>
+
+  <label for="expiration-date">Expiration Date</label>
+  <div class="hosted-field" id="expiration-date"></div>
+
+  <p>Total Cost: RM <%= @final_cost %></p>
+
+  <input type="hidden" name="payment_method_nonce">
+  <input type="hidden" name="reservation_id" value="<%= @reservation %>">
+  <input type="hidden" name="total_cost" value="<%= @final_cost %>">
+  <input type="submit" value="Pay Now" formaction="/payments"><br>
+
+</form>

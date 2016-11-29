@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :listings
   resources :reservations
   resources :users, only: [:show, :edit, :update, :destroy] 
+  resources :payments
 
 
   # The priority is based upon order of creation: first created -> highest priority.
