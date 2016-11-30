@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Available:</strong>
+  <%= @search.available %>
+</p>
+
+<p>
+  <strong>Low price:</strong>
+  <%= @search.low_price %>
+</p>
+
+<p>
+  <strong>High price:</strong>
+  <%= @search.high_price %>
+</p>
+
+<p>
+  <strong>City:</strong>
+  <%= @search.city %>
+</p>
+
+<p>
+  <strong>Max occupancy:</strong>
+  <%= @search.max_occupancy %>
+</p>
+
+<p>
+  <strong>Number of rooms:</strong>
+  <%= @search.number_of_rooms %>
+</p>
+
+<%= link_to 'Edit', edit_search_path(@search) %> |
+<%= link_to 'Back', searches_path %>
