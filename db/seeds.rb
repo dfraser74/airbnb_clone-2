@@ -39,9 +39,39 @@
 # 	password: "1234Qwer",
 # 	first_name: "Admin",
 # 	role: 2)
-file = "~/Desktop/git_clones/airbnb_clone/app/assets/images/noimagefound.jpg"
-data_file = File.open(File.expand_path(file))
-Listing.all.each do |list|
-	list.avatars = data_file
-	list.save
+# file = "~/Desktop/git_clones/airbnb_clone/app/assets/images/noimagefound.jpg"
+# data_file = File.open(File.expand_path(file))
+# Listing.all.each do |list|
+# 	list.avatars = data_file
+# 	list.save
+# end
+
+# namelist = ["pool","wifi","gym","breakfast","spa","aircond","parking","kitchen","tv"]
+
+# imageurl = [
+# "http://image.flaticon.com/icons/svg/139/139906.svg",
+# "http://image.flaticon.com/icons/svg/262/262359.svg",
+# "http://image.flaticon.com/icons/svg/249/249187.svg",
+# "http://image.flaticon.com/icons/svg/262/262413.svg",
+# "http://image.flaticon.com/icons/svg/273/273280.svg",
+# "http://image.flaticon.com/icons/svg/262/262370.svg",
+# "http://image.flaticon.com/icons/svg/262/262385.svg",
+# "http://image.flaticon.com/icons/svg/235/235834.svg",
+# "http://image.flaticon.com/icons/svg/262/262357.svg"]
+
+# 9.times do
+#   Amenity.create(
+# 	name: namelist.shift,
+# 	image_source: imageurl.shift)
+# end
+
+Listing.all.each do |listing|
+
+	random = rand(1..9)
+
+	(101..100+random).each do |x|
+		@amenity = Amenity.find(x)
+		listing.amenities << @amenity
+	end
+
 end

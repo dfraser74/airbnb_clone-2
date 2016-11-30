@@ -11,27 +11,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161130031716) do
+ActiveRecord::Schema.define(version: 20161130061845) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "amenities", force: :cascade do |t|
-    t.boolean  "wifi"
-    t.boolean  "pool"
-    t.boolean  "gym"
-    t.boolean  "breakfast"
-    t.boolean  "spa"
-    t.boolean  "aircond"
-    t.boolean  "parking"
-    t.boolean  "kitchen"
-    t.boolean  "tv"
-    t.integer  "listing_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.string   "name"
+    t.string   "image_source"
   end
 
-  add_index "amenities", ["listing_id"], name: "index_amenities_on_listing_id", using: :btree
+  create_table "amenities_listings", id: false, force: :cascade do |t|
+    t.integer "listing_id", null: false
+    t.integer "amenity_id", null: false
+  end
+
+  add_index "amenities_listings", ["listing_id", "amenity_id"], name: "index_amenities_listings_on_listing_id_and_amenity_id", using: :btree
 
   create_table "authentications", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -124,7 +121,6 @@ ActiveRecord::Schema.define(version: 20161130031716) do
   add_index "users", ["email"], name: "index_users_on_email", using: :btree
   add_index "users", ["remember_token"], name: "index_users_on_remember_token", using: :btree
 
-  add_foreign_key "amenities", "listings"
   add_foreign_key "listings", "users"
   add_foreign_key "reservations", "listings"
   add_foreign_key "reservations", "payments"
