@@ -1,4 +1,7 @@
-<h1>Listings#index</h1>
+<div class="searchbar">
+<%= render partial: "search_form" %>
+</div><br><br>
+
 <%= button_to "Create New", new_listing_path, method: :get %><br>
 <table class="table table-bordered">
 	<thead>
