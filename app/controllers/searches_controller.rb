@@ -24,16 +24,21 @@ class SearchesController < ApplicationController
   # POST /searches
   # POST /searches.json
   def create
-    @search = Search.new(search_params)
+    params.permit!
+    new_search = Search.create(params[:search])
+    if new_search.save
+      new_search.reload
+    # respond_to do |format|
+    #   if @search.save
+    #     format.html { redirect_to @search, notice: 'Search was successfully created.' }
+    #     format.json { render :show, status: :created, location: @search }
+    #   else
+    #     format.html { render :new }
+    #     format.json { render json: @search.errors, status: :unprocessable_entity }
+    #   end
+    # end
 
-    respond_to do |format|
-      if @search.save
-        format.html { redirect_to @search, notice: 'Search was successfully created.' }
-        format.json { render :show, status: :created, location: @search }
-      else
-        format.html { render :new }
-        format.json { render json: @search.errors, status: :unprocessable_entity }
-      end
+      redirect_to listings_path(search: new_search)
     end
   end
 

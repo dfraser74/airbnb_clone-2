@@ -1,3 +1,11 @@
+<% @searches = Search.new %>
+<%= form_for(@searches) do |f| %>
+<%= f.label :available, "Available" %>: <%= f.radio_button :available, "true" %>
+<%= f.label :available, "Not Available" %>: <%= f.radio_button :available, "false" %><br>
+Price Range: <%= f.number_field :low_price %> - <%= f.number_field :high_price %><br>
+<%= f.submit %> 
+<% end %>
+
 <h1>Listings#index</h1>
 <%= button_to "Create New", new_listing_path, method: :get %><br>
 <table class="table table-bordered">

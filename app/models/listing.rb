@@ -2,6 +2,7 @@ class Listing < ActiveRecord::Base
   belongs_to :user
   has_many :reservations, dependent: :destroy
   has_many :amenities, dependent: :destroy
+  has_and_belongs_to_many :searches
   accepts_nested_attributes_for :amenities, :allow_destroy => true
   mount_uploaders :avatars, AvatarUploader
 
