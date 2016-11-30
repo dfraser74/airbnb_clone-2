@@ -5,6 +5,11 @@
 <b>Price Range</b>: <%= f.number_field :low_price, {:class => 'searchform', :maxlength => 5} %> - <%= f.number_field :high_price, {:class => 'searchform', :maxlength => 5} %>
 <%= f.label :city %>: <%= f.text_field :city %> |
 <span class="glyphicon glyphicon-bed"></span> <%= f.number_field :number_of_rooms, {:class => 'searchform2', :maxlength => 1} %> |
-<span class="glyphicon glyphicon-user"></span> <%= f.number_field :max_occupancy, {:class => 'searchform2', :maxlength => 1} %>&nbsp;&nbsp;
+<span class="glyphicon glyphicon-user"></span> <%= f.number_field :max_occupancy, {:class => 'searchform2', :maxlength => 1} %>&nbsp;&nbsp;<br><br>
+<%= f.label :amenities %>
+<% Amenity.all.each do |a| %>
+    <%= check_box_tag 'amenities[amenities][]', "#{a.name}", @searches.amenities.include?("#{a.id}") %>
+    <%=h a.name.capitalize %>
+<% end %>
 <%= f.submit "Search", :class => "searchsubmit" %> 
 <% end %>

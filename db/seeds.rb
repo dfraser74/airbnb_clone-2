@@ -65,13 +65,13 @@
 # 	image_source: imageurl.shift)
 # end
 
-Listing.all.each do |listing|
+# Listing.all.each do |listing|
 
-	random = rand(1..9)
+# 	random = rand(1..9)
 
-	(101..100+random).each do |x|
-		@amenity = Amenity.find(x)
-		listing.amenities << @amenity
-	end
+# 	(101..100+random).each do |x|
+# 		@amenity = Amenity.find(x)
+# 		listing.amenities << @amenity
+# 	end
 
-end
+# end
