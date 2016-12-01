@@ -8,7 +8,7 @@
 <span class="glyphicon glyphicon-user"></span> <%= f.number_field :max_occupancy, {:class => 'searchform2', :maxlength => 1} %>&nbsp;&nbsp;<br><br>
 <%= f.label :amenities %>
 <% Amenity.all.each do |a| %>
-    <%= check_box_tag 'amenities[amenities][]', "#{a.name}", @searches.amenities.include?("#{a.id}") %>
+    <%= check_box_tag 'amenities[amenities][]', "#{a.id}", @searches.amenities.include?("#{a.id}") %>
     <%=h a.name.capitalize %>
 <% end %>
 <%= f.submit "Search", :class => "searchsubmit" %> 

@@ -14,7 +14,7 @@ class Listing < ActiveRecord::Base
   scope :number_of_rooms, ->(rooms) { where("number_of_rooms >= ?", rooms) }
   # scope :amenities, ->(amenity) { joins(:amenities).where("amenity_id IN (?)", amenity.map(&:to_i)) }
 
-  scope :has_amenity, -> (amenities) { joins(:amenities).where("amenities.name" => amenities)  }
+  scope :has_amenity, -> (amenities) { joins(:amenities).where("amenities.id" => amenities)  }
 
 # def self.check_list(amenities)
 

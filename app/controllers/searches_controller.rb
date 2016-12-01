@@ -25,7 +25,7 @@ class SearchesController < ApplicationController
   # POST /searches.json
   def create
     params.permit!
-    #byebug
+    byebug
     new_search = Search.create(params[:search])
     new_search.amenities = params[:amenities].values.flatten
     if new_search.save
