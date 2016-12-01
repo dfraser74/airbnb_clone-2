@@ -26,18 +26,9 @@ class SearchesController < ApplicationController
   def create
     params.permit!
     new_search = Search.create(params[:search])
+    new_search.amenities = params[:amenities].values.flatten
     if new_search.save
       new_search.reload
-    # respond_to do |format|
-    #   if @search.save
-    #     format.html { redirect_to @search, notice: 'Search was successfully created.' }
-    #     format.json { render :show, status: :created, location: @search }
-    #   else
-    #     format.html { render :new }
-    #     format.json { render json: @search.errors, status: :unprocessable_entity }
-    #   end
-    # end
-
       redirect_to listings_path(search: new_search)
     end
   end
