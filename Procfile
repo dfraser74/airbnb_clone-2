@@ -1,2 +1,3 @@
 web: bundle exec unicorn -p $PORT -c ./config/unicorn.rb
-worker: bundle exec rake jobs:work
+worker: bundle exec sidekiq -q default -q mailers -c 5
+tail: -f log/development.log
