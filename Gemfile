@@ -44,7 +44,6 @@ gem 'omniauth-facebook'
 # Use Daterangepicker
 gem 'bootstrap-datepicker-rails'
 gem 'bootstrap', '~> 4.0.0.alpha5'
-gem 'jquery-rails'
 gem 'momentjs-rails'
 gem 'bootstrap-daterangepicker-rails'
 
@@ -84,5 +83,8 @@ group :development do
   gem 'spring'
 
   gem 'postgres_ext'
+
+  # Enable usage of attr_accessible
+  gem 'protected_attributes'
 end
 
