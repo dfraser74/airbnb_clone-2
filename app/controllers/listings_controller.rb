@@ -13,7 +13,6 @@ class ListingsController < ApplicationController
 
   def show
     @listings = Listing.find(params[:id])
-    @amenities = Amenity.find_by(listing_id: params[:id])
   end
 
   def new
