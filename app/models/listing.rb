@@ -12,29 +12,6 @@ class Listing < ActiveRecord::Base
   scope :city, ->(preferred_city) { where("city ILIKE ?", "%#{preferred_city}%") }
   scope :max_occupancy, ->(pax) { where("max_occupancy >= ?", pax) }
   scope :number_of_rooms, ->(rooms) { where("number_of_rooms >= ?", rooms) }
-  # scope :amenities, ->(amenity) { joins(:amenities).where("amenity_id IN (?)", amenity.map(&:to_i)) }
+  scope :has_amenity, -> (amenities) { where(Listing.arel_table[:amenities_group].contains(amenities)) }
 
-  scope :has_amenity, -> (amenities) { joins(:amenities).where("amenities.id" => amenities)  }
-
-# def self.check_list(amenities)
-
-#     @confirm = []
-#     Listing.all.each do |listings|
-#       @listing = []
-#       amenities.each do |amenity_id|
-#         byebug
-#         check = Listing.joins(:amenities).where(amenities_id: amenity_id).where(listing_id: listings.id)
-#         if check.blank?
-#         else
-#           @listing << check
-#         end 
-#       end
-#       if @listing.length == amenities.length
-#         @confirm << @listing
-#       end
-
-#     end
-
-#     return @confirm
-#   end  
 end

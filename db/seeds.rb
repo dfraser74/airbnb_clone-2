@@ -75,3 +75,11 @@
 # 	end
 
 # end
+
+
+Listing.all.each do |x|
+	x.amenities_group = []
+	x.amenities_group << x.amenity_ids
+	x.amenities_group.flatten
+	x.save
+end

@@ -3,10 +3,8 @@ class ListingsController < ApplicationController
 
     if params[:search] != nil
       @search = Search.find(params[:search])
-      #byebug
-      @listings = Listing.available.low_price(@search.low_price).high_price(@search.high_price).city(@search.city).max_occupancy(@search.max_occupancy).number_of_rooms(@search.number_of_rooms).has_amenity(@search.amenities).page(params[:page]).per_page(20)#.order('created_at DESC')
+      @listings = Listing.available.low_price(@search.low_price).high_price(@search.high_price).city(@search.city).max_occupancy(@search.max_occupancy).number_of_rooms(@search.number_of_rooms).has_amenity(@search.amenities).page(params[:page]).per_page(20).order('created_at DESC')
 
-      #@listings = Listing.has_amenity(@search.amenities).page(params[:page]).per_page(20)#.order('created_at DESC')
     else
       @listings = Listing.page(params[:page]).per_page(20).order('created_at DESC')
     end
