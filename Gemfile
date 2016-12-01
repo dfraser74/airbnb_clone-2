@@ -16,6 +16,7 @@ gem 'coffee-rails', '~> 4.1.0'
 
 # Use background job processing
 gem 'sidekiq'
+gem 'sidekiq_mailer'
 
 # Use Braintree payment gateway
 gem 'braintree'

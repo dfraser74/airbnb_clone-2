@@ -37,7 +37,7 @@ class ReservationsController < ApplicationController
 		   end
 
 		   if continue_check == true
-		  	ReservationMailer.confirm_booking(@reservation.user, @reservation.listing, @reservation).deliver_now
+		  	ReservationMailer.confirm_booking(@reservation.user, @reservation.listing, @reservation).deliver
 	      	redirect_to("/reservations/#{@reservation.id}") 
 
 	      	else
