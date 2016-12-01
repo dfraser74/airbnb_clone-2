@@ -34,7 +34,7 @@ gem 'mini_magick'
 gem 'carrierwave', '>= 1.0.0.rc', '< 2.0', github: 'carrierwaveuploader/carrierwave'
 
 # Server Storage using Fog
-gem 'fog'
+gem 'fog', require: 'fog/aws'
 
 # Use Clearance & Omniauth for user authentication
 gem 'clearance'
