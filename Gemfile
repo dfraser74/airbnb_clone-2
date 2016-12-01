@@ -51,6 +51,11 @@ gem 'bootstrap-daterangepicker-rails'
 # Use Figaro for privacy protection
 gem 'figaro'
 
+# Use 12 Factor for deploying
+gem 'rails_12factor'
+gem 'unicorn'
+gem 'rack-timeout'
+
 # Use FFaker to generate seeds
 gem 'ffaker'
 
