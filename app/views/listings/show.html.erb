@@ -53,7 +53,7 @@
 <p><b>Number of Rooms: </b><%= @listings.number_of_rooms %></p>
 <p><b>Description: </b><%= @listings.description %></p>
 <p><b>Available Amenities: </b></p>
-<p><%= available_amenities(@listings.id).html_safe %></p>
+<p><%= amenities_icon(@listings.id).html_safe %></p>
 <br>
 <p><%= edit_authorization(current_user.id, @listings.id).html_safe %></p>
 <%= link_to "Reserve Now", new_reservation_path(listing: @listings.id), method: :get %>
