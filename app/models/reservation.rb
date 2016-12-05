@@ -21,15 +21,15 @@ class Reservation < ActiveRecord::Base
 
   def unique_check_in_and_out_dates
     if check_in_date != nil
-  	if check_in_date == check_out_date
-  		self.check_in_date = nil
-  		self.check_out_date = nil
-      $notice = "Check in and check out dates must be 1 day apart"
-  	else
-  	end
+      if check_in_date == check_out_date
+        self.check_in_date = nil
+        self.check_out_date = nil
+        $notice = "Check in and check out dates must be 1 day apart"
+      else
+      end
+    end
   end
-  end
- 
+
   def date_availability
     user_record = Reservation.where(user_id: user_id)
     listing_record = Reservation.where(listing_id: listing_id)
@@ -37,7 +37,6 @@ class Reservation < ActiveRecord::Base
       user_record.each do |x|
         if x.booked_date == booked_date
           self.booked_date = nil
-          #self.check_out_date = nil
           $notice = "You've already have a reservation on those dates!"
           break
         else
@@ -48,16 +47,14 @@ class Reservation < ActiveRecord::Base
         listing_record.each do |x|
           if x.booked_date == booked_date
             self.booked_date = nil
-            #self.check_out_date = nil
             $notice = "Listing already booked for those dates." 
             break
           else
           end
-        break
+          break
         end
       end
     end
-
   end
 
 end

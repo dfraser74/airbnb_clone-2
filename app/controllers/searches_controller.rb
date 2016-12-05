@@ -67,4 +67,4 @@ class SearchesController < ApplicationController
     def search_params
       params.require(:search).permit(:available, :low_price, :high_price, :city, :max_occupancy, :number_of_rooms)
     end
-end
+  end

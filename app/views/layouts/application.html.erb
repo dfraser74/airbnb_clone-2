@@ -3,15 +3,17 @@
 <head>
 	<title>Pairbnb</title>
 
-		  <!-- Load the Client component. -->
+	<!-- Load the Client component. -->
 	<script src="https://js.braintreegateway.com/web/3.6.0/js/client.min.js"></script>
 
 	<!-- Load the Hosted Fields component. -->
 	<script src="https://js.braintreegateway.com/web/3.6.0/js/hosted-fields.min.js"></script>
 
+  <!-- Load JQuery -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 	<script src="//code.jquery.com/jquery-1.10.2.js"></script>
-    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
 	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
@@ -20,114 +22,119 @@
 
 	<!-- Latest compiled and minified JavaScript -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 	<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
 	<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
 	<%= csrf_meta_tags %>
+
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 </head>
+
 <body>
-<div class="container">
-	<div class="col col-md-12 header">
-	PAIRBNB
-		<div class="welcome">
-			<% if signed_in? %>
-				&nbsp;&nbsp;
-				<b>Welcome,</b>
-				<%= link_to current_user.email, user_path(current_user), method: :get %>
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				</div>
-				<span class="profile_pic"><%= image_tag(current_user.avatar.thumb, :class => "profile_pic") %></span>
-			<% else %>
-			</div>
-			<% end %>
-	</div>
 
-	<div class="navbar">
-		<%= button_to "Home", root_url, method: :get, class: "btn btn-primary navbtn col col-md-3" %>
-		<%= button_to "Listings", listings_path, method: :get, class: "btn btn-primary navbtn col col-md-3" %>
-		<% if signed_in? %>
-			<%= button_to "Edit profile", edit_user_path(current_user.id), method: :get, class: "btn btn-primary navbtn col col-md-3" %>
-			<%= button_to "Sign out", sign_out_path, method: :delete, class: "btn btn-primary navbtn col col-md-3" %>
-		<% else %>
-			<%= link_to "Sign up", sign_up_path, class: "btn btn-primary navbtn col col-md-3" %>		
-			<%= link_to "Sign in", sign_in_path, class: "btn btn-primary navbtn col col-md-3" %>	
-		<% end %>
-	</div>
-	<%= flash[:notice] if flash[:notice] %>
-	<% flash[:notice] = nil %>
-	<%= yield %>
+  <div class="container">
+  	<div class="col col-md-12 header">
+  	PAIRBNB
+  		<div class="welcome">
+  			<% if signed_in? %>
+  				&nbsp;&nbsp;
+  				<b>Welcome,</b>
+  				<%= link_to current_user.email, user_path(current_user), method: :get %>
+  				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  				</div>
+  				<span class="profile_pic"><%= image_tag(current_user.avatar.thumb, :class => "profile_pic") %></span>
+  			<% else %>
+  			</div>
+  			<% end %>
+  	</div>
 
-	<script>
+  	<div class="navbar">
+  		<%= button_to "Home", root_url, method: :get, class: "btn btn-primary navbtn col col-md-3" %>
+  		<%= button_to "Listings", listings_path, method: :get, class: "btn btn-primary navbtn col col-md-3" %>
+  		<% if signed_in? %>
+  			<%= button_to "Edit profile", edit_user_path(current_user.id), method: :get, class: "btn btn-primary navbtn col col-md-3" %>
+  			<%= button_to "Sign out", sign_out_path, method: :delete, class: "btn btn-primary navbtn col col-md-3" %>
+  		<% else %>
+  			<%= link_to "Sign up", sign_up_path, class: "btn btn-primary navbtn col col-md-3" %>		
+  			<%= link_to "Sign in", sign_in_path, class: "btn btn-primary navbtn col col-md-3" %>	
+  		<% end %>
+  	</div>
+  	<%= flash[:notice] if flash[:notice] %>
+  	<% flash[:notice] = nil %>
+  	<%= yield %>
 
-var authorization = '<%= @client_token %>';
-braintree.client.create({
-  authorization: authorization
-}, function (clientErr, clientInstance) {
-  if (clientErr) {
-    // Handle error in client creation
-    return;
-  }
+  	<script>
 
-  braintree.hostedFields.create({
-    client: clientInstance,
-    styles: {
-      'input': {
-        'font-size': '14pt'
-      },
-      'input.invalid': {
-        'color': 'red'
-      },
-      'input.valid': {
-        'color': 'green'
-      }
-    },
-    fields: {
-      number: {
-        selector: '#card-number',
-        placeholder: '4111 1111 1111 1111'
-      },
-      cvv: {
-        selector: '#cvv',
-        placeholder: '123'
-      },
-      expirationDate: {
-        selector: '#expiration-date',
-        placeholder: '10/2019'
-      }
-    }
-  }, function (hostedFieldsErr, hostedFieldsInstance) {
-    if (hostedFieldsErr) {
-      // Handle error in Hosted Fields creation
-      return;
-    }
-    var submit = document.querySelector('input[type="submit"]');
-    // submit.removeAttribute('disabled');
-
-  var form = document.querySelector('#checkout-form');
-
-  form.addEventListener('submit', function (event) {
-      event.preventDefault();
-
-      hostedFieldsInstance.tokenize(function (tokenizeErr, payload) {
-        if (tokenizeErr) {
-          alert(tokenizeErr);
-          // Handle error in Hosted Fields tokenization
+      var authorization = '<%= @client_token %>';
+      braintree.client.create({
+        authorization: authorization
+      }, function (clientErr, clientInstance) {
+        if (clientErr) {
+          // Handle error in client creation
           return;
         }
 
-        // Put `payload.nonce` into the `payment-method-nonce` input, and then
-        // submit the form. Alternatively, you could send the nonce to your server
-        // with AJAX.
-        document.querySelector('input[name="payment_method_nonce"]').value = payload.nonce;
-        form.submit();
-      });
-    }, false); 
-       
-  });
-});
-  </script>
+        braintree.hostedFields.create({
+          client: clientInstance,
+          styles: {
+            'input': {
+              'font-size': '14pt'
+            },
+            'input.invalid': {
+              'color': 'red'
+            },
+            'input.valid': {
+              'color': 'green'
+            }
+          },
+          fields: {
+            number: {
+              selector: '#card-number',
+              placeholder: '4111 1111 1111 1111'
+            },
+            cvv: {
+              selector: '#cvv',
+              placeholder: '123'
+            },
+            expirationDate: {
+              selector: '#expiration-date',
+              placeholder: '10/2019'
+            }
+          }
+        }, function (hostedFieldsErr, hostedFieldsInstance) {
+          if (hostedFieldsErr) {
+            // Handle error in Hosted Fields creation
+            return;
+          }
+          var submit = document.querySelector('input[type="submit"]');
+          // submit.removeAttribute('disabled');
 
-</div>
+        var form = document.querySelector('#checkout-form');
+
+        form.addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            hostedFieldsInstance.tokenize(function (tokenizeErr, payload) {
+              if (tokenizeErr) {
+                alert(tokenizeErr);
+                // Handle error in Hosted Fields tokenization
+                return;
+              }
+
+              // Put `payload.nonce` into the `payment-method-nonce` input, and then
+              // submit the form. Alternatively, you could send the nonce to your server
+              // with AJAX.
+              document.querySelector('input[name="payment_method_nonce"]').value = payload.nonce;
+              form.submit();
+            });
+          }, false); 
+             
+        });
+      });
+    </script>
+
+  </div>
 </body>
 </html>

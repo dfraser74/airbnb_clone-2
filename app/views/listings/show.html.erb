@@ -6,11 +6,11 @@
 	    <!-- Indicators -->
 	    <ol class="carousel-indicators">
 	    	<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-	    <% total = 1 %>
-	    <% while total <= @listings.avatars.length - 1 %>
-	      <li data-target="#myCarousel" data-slide-to="<%= total %>"></li>
-	      <% total += 1 %>
-	      <% end %>
+	    	<% total = 1 %>
+	    	<% while total <= @listings.avatars.length - 1 %>
+	      		<li data-target="#myCarousel" data-slide-to="<%= total %>"></li>
+	      		<% total += 1 %>
+	      	<% end %>
 	    </ol>
 
 	    <!-- Wrapper for slides -->
@@ -40,7 +40,6 @@
 	      <span class="sr-only">Next</span>
 	    </a>
 	  </div>
-
 <% end %>
 
 
@@ -53,7 +52,7 @@
 <p><b>Number of Rooms: </b><%= @listings.number_of_rooms %></p>
 <p><b>Description: </b><%= @listings.description %></p>
 <p><b>Available Amenities: </b></p>
-<p><%= amenities_icon(@listings.id).html_safe %></p>
+<p><%= available_amenities(@listings.id).html_safe %></p>
 <br>
 <p><%= edit_authorization(current_user.id, @listings.id).html_safe %></p>
 <%= link_to "Reserve Now", new_reservation_path(listing: @listings.id), method: :get %>
