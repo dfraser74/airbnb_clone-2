@@ -1,5 +1,5 @@
 <div class="searchbar">
-<%= render partial: "search_form" %>
+	<%= render partial: "search_form" %>
 </div><br><br>
 
 <%= button_to "Create New", new_listing_path, method: :get %><br>
@@ -9,37 +9,43 @@
 	<tbody>
 		<%= will_paginate @listings %>
 		<% @listings.all.each do |list| %>
-		<tr><td rowspan="5">
-		<%= main_image(list.id) %>
-		</td>
-		<td class="col-md-3" colspan="3"><a href="/listings/<%= list.id %>"><h4><%= list.name %></h4></a>
-		<%= list.description %></td>
-		<tr>
-		<td class="col-md-2"><b>Price:</b> RM <%= list.price %></td>
-		<td class="col-md-2"><b>No. of Rooms:</b> <%= list.number_of_rooms %> <span class="glyphicon glyphicon-bed"></span></td>
-		<td class="col-md-2"><b>Max Occupancy:</b> <%= list.max_occupancy %> <span class="glyphicon glyphicon-user"></span></td>
-		</tr>
-		<tr>
-		<td class="col-md-2"><b>City:</b> <%= list.city %></td>
-		<td class="col-md-2" colspan="2"><b>Address:</b> <%= list.address %></td>
-		</tr>
-		<tr>
-		<td class="col-md-3" colspan="3"><b>Amenities: <%= amenities_icon(list.id) %></b></td>
-		</tr>
-		<tr>
-		<td class="col-md-3" colspan="3"><b>Listed By:</b> <%= list.user.email %>
-		<% if signed_in? %>
-		<% if allowed?(current_user.id, list.user_id) %>
-		&nbsp;<%= edit_authorization(current_user.id, list.id).html_safe %>&nbsp;<%= delete_authorization(current_user.id, list.id).html_safe %>
-		<% else %>
-		<% end %>
-		<% else %>
-		<% end %>
-		</td>
-		</tr>
-		<tr>
-		<td colspan="4"></td>
-		</tr>
+			<tr>
+				<td rowspan="5"><%= main_image(list.id) %></td>
+				<td class="col-md-3" colspan="3">
+					<a href="/listings/<%= list.id %>"><h4><%= list.name %></h4></a>
+					<%= list.description %>
+				</td>
+			</tr>
+			<tr>
+				<td class="col-md-2"><b>Price:</b> RM <%= list.price %></td>
+				<td class="col-md-2">
+				<b>No. of Rooms:</b> <%= list.number_of_rooms %> <span class="glyphicon glyphicon-bed"></span>
+				</td>
+				<td class="col-md-2">
+				<b>Max Occupancy:</b> <%= list.max_occupancy %> <span class="glyphicon glyphicon-user"></span>
+				</td>
+			</tr>
+			<tr>
+				<td class="col-md-2"><b>City:</b> <%= list.city %></td>
+				<td class="col-md-2" colspan="2"><b>Address:</b> <%= list.address %></td>
+			</tr>
+			<tr>
+				<td class="col-md-3" colspan="3"><b>Amenities: <%= available_amenities(list.id) %></b></td>
+			</tr>
+			<tr>
+				<td class="col-md-3" colspan="3"><b>Listed By:</b> <%= list.user.email %>
+					<% if signed_in? %>
+						<% if allowed?(current_user.id, list.user_id) %>
+							&nbsp;<%= edit_authorization(current_user.id, list.id).html_safe %>&nbsp;<%= delete_authorization(current_user.id, list.id).html_safe %>
+						<% else %>
+						<% end %>
+					<% else %>
+					<% end %>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="4"></td>
+			</tr>
 		<% end %>
 	</tbody>
 </table>

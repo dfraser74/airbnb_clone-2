@@ -34,7 +34,7 @@ class PaymentsController < ApplicationController
       :options => {
         :submit_for_settlement => true
       }
-    )
+      )
 
     if result.success?
       flash[:notice] = "success!: #{result.transaction.id}"
@@ -48,7 +48,6 @@ class PaymentsController < ApplicationController
         ind_record.payment_id = new_payment.id
         ind_record.save
       end
-
     elsif result.transaction
       flash[:notice] = "Error processing transaction:"
       puts "  code: #{result.transaction.processor_response_code}"

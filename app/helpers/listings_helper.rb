@@ -1,12 +1,11 @@
 module ListingsHelper
 
 	def setup_listing(listings)
-    	listings.amenities ||= Amenity.new
-    	listings
-  	end
+		listings.amenities ||= Amenity.new
+		listings
+	end
 
 	def availability_checker(listing_id)
-
 		if Listing.find(listing_id).availability == true
 			return "Yes"
 		else
@@ -15,7 +14,6 @@ module ListingsHelper
 	end
 
 	def edit_authorization(user_id, listing_id)
-
 		case User.find(user_id).role
 		when "landlord"
 			return "<a href=\"/listings/#{listing_id}/edit\"><button type=\"input\">Edit</button></a>"
@@ -25,14 +23,13 @@ module ListingsHelper
 	end	
 
 	def delete_authorization(user_id, listing_id)
-
 		case User.find(user_id).role
 		when "landlord", "admin"
 			return(
 				link_to listing_path(listing_id), method: :delete do
 					"<button>Delete</button>".html_safe 
 				end
-			)
+				)
 		else
 			return ""
 		end
@@ -51,11 +48,11 @@ module ListingsHelper
 
 	def main_image(listing_id)
 		@listings = Listing.find(listing_id)
-
 		if @listings.avatars.length > 0
 			image_tag(@listings.avatars[0].medium.url)
 		else
 			image_tag('http://www.novelupdates.com/img/noimagefound.jpg')
 		end
 	end
+
 end

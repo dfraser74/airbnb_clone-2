@@ -1,14 +1,16 @@
-Bookings Made:<br><br>
+<h4>Bookings Made:</h4><br><br>
 <ol>
-<% Reservation.where(user_id: @user.id).each do |list| %>
-<li><%= link_to list.listing.name, reservation_path(list.id), method: :get %></li><br>
-<% end %>
+  <% Reservation.where(user_id: @user.id).each do |list| %>
+	<li><%= link_to list.listing.name, reservation_path(list.id), method: :get %>
+	</li><br>
+  <% end %>
 </ol>
 
-Reservations on My Listings:<br><br>
+<h4>Reservations on My Listings:</h4><br><br>
 <ol>
-<% listings = Listing.where(user_id: @user_id) %>
-<% Reservation.where(listing_id: listings).each do |list| %>
-<li><%= link_to list.listing.name, reservation_path(list.id), method: :get %></li><br>
-<% end %>
+  <% listings = Listing.where(user_id: @user_id) %>
+  <% Reservation.where(listing_id: listings).each do |list| %>
+	<li><%= link_to list.listing.name, reservation_path(list.id), method: :get %>
+	</li><br>
+  <% end %>
 </ol>
